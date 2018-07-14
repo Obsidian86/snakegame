@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Snake map maker</title>
+        <link type="text/css" rel="stylesheet" href="game.css" />
+    </head>
+    <body>
+        <div id="prompt">
+            <div>
+              <h1>Snake</h1>
+              <p>The rules are pretty much the same as a normal game of snake. Use the arrow keys to conrol the snake. </p>
+              <p>  You collect the yellow squares, and you avoid the red ones. You also avoid your own light green squares. Each yellow square you collect will increase the length of your snake. <br />
+              </p>
+              <p> Here's the twist: pink circles will spawn sporadically throughout the game, you'll want to avoid those, too. </p>
+              <p>You can use your spacebar key to shoot projectiles in the direction that you're moving. The projectiles will eliminate the pink squares.</p>
+              <button class="startGame">Start game</button>
+            </div>
+          </div>
+          <div class='scoreCard'>
+            <p>score:</p>
+            <p id="score">0</p>
+          </div>
+          <ul id='snakeCanvas'></ul>
+        <script type='text/javascript' src="game.js" ></script>     
+    </body>
+</html> 
