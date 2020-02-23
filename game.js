@@ -5,14 +5,16 @@ document.getElementsByClassName("startGame")[0].addEventListener("click", functi
 });
 
 //canvas settings 
-const cellDim = 18; //20
+const cellDim = 14; //20
 const columns = 60;   //50
 const rows = 40; //30
+const startSpeed = 100;
+let highScore = 0;
 document.getElementById("snakeCanvas").style.width = columns * cellDim + "px";
 
 // Game settings
 let dir = [0, 1]; // starting direction - doesn't matter : either  -1 || 0 || 1
-let speed = 100; //set timeout seconds - starting speed 100-ish
+let speed = startSpeed; //set timeout seconds - starting speed 100-ish
 let speedIncr = 3; //3 - speed increase per item
 let curKey = 40;
 let startGame; 
@@ -25,54 +27,54 @@ let gameScore = 0;
 let lazerActive = false;
 let changeActive = false;
 document.addEventListener("keydown", function(event){ 
-        //If game hasn't started (1), sets the game to start
-       if( started === 1 ){
-          startGame = setInterval( function(){ moveSnake(); }, speed);
-          started = 2; 
-        }
-        //If game has started (2), allows controls
-        if( started === 2){
-          //Fire Lazer - spacebar
-          if(event.keyCode === 32){
-            if( !lazerActive ){
-              lazerActive = true;
-              fireLazer(); 
-            }
-          } 
-          
-          // Change direction - arrow keys
-          if(!changeActive){
-            changeActive = true;
-            switch(event.keyCode){ 
-              case 37:
-                if(curKey !== 39){
-                  dir = [-1, 0];
-                  curKey = event.keyCode;
-                } 
-                break;               
-              case 40:
-                if(curKey !== 38){
-                  dir = [0, 1]; 
-                  curKey = event.keyCode;
-                }
-                break;
-              case 38:
-                if(curKey !== 40 && started != 1){
-                  dir = [0, -1]; 
-                  curKey = event.keyCode;
-                } 
-                break;
-              case 39:
-                if(curKey !== 37){
-                  dir = [1, 0]; 
-                  curKey = event.keyCode;
-                }
-                break; 
-            } //End Switch
+      //If game hasn't started (1), sets the game to start
+      if( started === 1 ){
+        startGame = setInterval( function(){ moveSnake(); }, speed);
+        started = 2; 
+      }
+      //If game has started (2), allows controls
+      if( started === 2){
+        //Fire Lazer - spacebar
+        if(event.keyCode === 32){
+          if( !lazerActive ){
+            lazerActive = true;
+            fireLazer(); 
           }
+        } 
+        
+        // Change direction - arrow keys
+        if(!changeActive){
+          changeActive = true;
+          switch(event.keyCode){ 
+            case 37:
+              if(curKey !== 39){
+                dir = [-1, 0];
+                curKey = event.keyCode;
+              } 
+              break;               
+            case 40:
+              if(curKey !== 38){
+                dir = [0, 1]; 
+                curKey = event.keyCode;
+              }
+              break;
+            case 38:
+              if(curKey !== 40 && started != 1){
+                dir = [0, -1]; 
+                curKey = event.keyCode;
+              } 
+              break;
+            case 39:
+              if(curKey !== 37){
+                dir = [1, 0]; 
+                curKey = event.keyCode;
+              }
+              break; 
+          } //End Switch
+        }
 
-     } // End if
-  
+    } // End if
+
       
   
 }); //End event listener
@@ -305,12 +307,16 @@ function restartGame(){
   setItem();
   started = 1;
   curKey = 40;
-  speed = 110; 
+  speed = startSpeed;
   updateScore(-gameScore);
 }
 function updateScore( toAdd ){
   gameScore = gameScore + toAdd;
   document.getElementById("score").innerHTML = gameScore;
+  if(gameScore > highScore){
+    highScore = gameScore
+    document.getElementById("highscore").innerHTML = highScore;
+  }
 }
 
 /*
