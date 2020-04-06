@@ -52,6 +52,8 @@ button:hover{
   background-color: #444;
   cursor: pointer;
 }
+
+
 .scoreCard{ 
   position: absolute; 
   left: 7px; 
@@ -61,6 +63,36 @@ button:hover{
   border-radius: 5px;
 }
 
+.scoreCard div{
+  border-bottom: 1px solid #fff;
+  box-shadow: 0 1px 0 rgb(0, 113, 141);
+}
 .scoreCard p{
   font-size: 13px;
+}
+
+.selectStage{
+  width: 80%;
+  display: none;
+  margin: 0 auto;
+}
+.selectStage ul{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.selectStage li{
+  height: 100px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 0 3px gray;
+  cursor: pointer;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  transition: background-color .2s;
+  border: 9px solid pink;
+}
+.selectStage li:hover{
+  background-color: pink;
 }
